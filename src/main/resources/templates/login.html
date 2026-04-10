@@ -16,7 +16,7 @@
 <h3 class="text-center">Create Account</h3>
 	<div class="border  border-primary rounded border-3 p-3 bg-primary-subtle " >
 		 <div class="row justify-content-center ">
-						<form th:action="@{/login}" th:object="${regForm}" method="post">
+						<form th:action="@{/login}" th:object="${regForm}" method="post" class="needs-validation" novalidate>
 						
 						  <div th:if="${succMsg}" class ="alert alert-success">
 						  <span th:text="${succMsg}"> </span>
@@ -26,25 +26,51 @@
 						  <span th:text="${errMsg}"> </span>
 						  </div>
 						
+						 <!-- First Name -->
 						  <div class="mb-3 mt-3">
-						    <label for="firstnameId" class="form-label">First Name</label>
-						    <input type="text" class="form-control" id="firstnameId"  th:field="*{firstName}">
+							    <label for="firstnameId" class="form-label">First Name</label>
+							    <input type="text" class="form-control" id="firstnameId" th:field="*{firstName}" required>
+								<div class="invalid-feedback">
+								  First name is required
+								</div>						    
 						  </div>
 						  
+						  <!-- Last Name -->
 						  <div class="mb-3">
-						    <label for="lastnameId" class="form-label">Last Name</label>
-						    <input type="text" class="form-control" id="lastnameId" th:field="*{lastName}">
+							    <label for="lastnameId" class="form-label">Last Name</label>
+							    <input type="text" class="form-control" id="lastnameId" th:field="*{lastName}" required>
+								<div class="invalid-feedback">
+								  Last name is required
+								</div>
 						  </div>
 						  
+						  <!-- email -->
 						  <div class="mb-3">
-						    <label for="emailId" class="form-label">Email address</label>
-						    <input type="email" class="form-control" id="emailId"  th:field="*{email}">
-						    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-						  </div>
+							  <label for="emailId" class="form-label">Email address</label>						  
+							  <input type="email" class="form-control" id="emailId"  th:field="*{email}" required
+							    aria-describedby="emailHelp">
+							  
+							  <!-- Your existing helper text -->
+							  <div id="emailHelp" class="form-text">
+							    We'll never share your email with anyone else.
+							  </div>
+							  
+							  <!-- Validation message -->
+							  <div class="invalid-feedback">
+							    Please enter a valid email
+							  </div>
+						 </div>
+													  
+						  <!-- password -->
 						  <div class="mb-3">
-						    <label for="passwordId" class="form-label">Password</label>
-						    <input type="password" class="form-control" id="passwordId" th:field="*{password}">
+							    <label for="passwordId" class="form-label">Password</label>
+							    <input type="password" class="form-control" id="passwordId" th:field="*{password}" required minlength="6">
+								<div class="invalid-feedback">
+								  Password must be at least 6 characters
+								</div>
 						  </div>
+						  
+						  <!-- button -->
 						  <div class="d-flex align-items-center justify-content-center pb-2">
 						  			  <button type="submit" class="btn btn-primary">Submit</button>						    
 						  </div>
@@ -56,6 +82,22 @@
 
 </section>
 
+<script>
+(() => {
+  'use strict'
+  const forms = document.querySelectorAll('.needs-validation')
+
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
   
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
