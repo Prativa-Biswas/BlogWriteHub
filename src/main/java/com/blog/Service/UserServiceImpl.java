@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.blog.DTO.LoginForm;
 import com.blog.DTO.RegistrationForm;
 import com.blog.Entity.User;
 import com.blog.Repository.UserRepository;
@@ -21,7 +22,7 @@ public class UserServiceImpl implements UserService {
  private EmailUtils mailSender;
 	
 	@Override
-	public Boolean login(RegistrationForm form) {
+	public Boolean signUp(RegistrationForm form) {
 
 		// Validation for unique email
 		String email = form.getEmail();
@@ -60,6 +61,24 @@ public class UserServiceImpl implements UserService {
        }
        
 		return true;
+	}
+
+	@Override
+	public String login(LoginForm form) {
+		
+		Optional<User> optionalEmail = userRepo.findByemail(form.getEmail());
+		
+		//email check
+		if(optionalEmail.isEmpty()) {return "User Not found for "+form.getEmail(); }
+		
+		// password check 
+		if(!form.getPassword().equals(optionalEmail.get().getPassword())) 
+		{
+			return "Invalid Credential";
+		}
+		
+
+		return "SUCCESS";
 	}
 
 }

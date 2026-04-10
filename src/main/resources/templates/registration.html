@@ -13,10 +13,10 @@
   
 
 <div class="container mt-5 col-md-5 ">
-<h3 class="text-center">Login to your Account</h3>
+<h3 class="text-center">Create Account</h3>
 	<div class="border  border-primary rounded border-3 p-3 bg-primary-subtle " >
 		 <div class="row justify-content-center ">
-						<form th:action="@{/login}" th:object="${loginForm}" method="post" class="needs-validation" novalidate>
+						<form th:action="@{/signUp}" th:object="${regForm}" method="post" class="needs-validation" novalidate>
 						
 						  <div th:if="${succMsg}" class ="alert alert-success">
 						  <span th:text="${succMsg}"> </span>
@@ -24,7 +24,25 @@
 						  
 						  <div th:if="${errMsg}" class ="alert alert-danger">
 						  <span th:text="${errMsg}"> </span>
-						  </div>						
+						  </div>
+						
+						 <!-- First Name -->
+						  <div class="mb-3 mt-3">
+							    <label for="firstnameId" class="form-label">First Name</label>
+							    <input type="text" class="form-control" id="firstnameId" th:field="*{firstName}" required>
+								<div class="invalid-feedback">
+								  First name is required
+								</div>						    
+						  </div>
+						  
+						  <!-- Last Name -->
+						  <div class="mb-3">
+							    <label for="lastnameId" class="form-label">Last Name</label>
+							    <input type="text" class="form-control" id="lastnameId" th:field="*{lastName}" required>
+								<div class="invalid-feedback">
+								  Last name is required
+								</div>
+						  </div>
 						  
 						  <!-- email -->
 						  <div class="mb-3">
@@ -54,7 +72,7 @@
 						  
 						  <!-- button -->
 						  <div class="d-flex align-items-center justify-content-center pb-2">
-						  			  <button type="submit" class="btn btn-primary">Login</button>						    
+						  			  <button type="submit" class="btn btn-primary">Submit</button>						    
 						  </div>
 						  
 						</form>

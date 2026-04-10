@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.blog.DTO.LoginForm;
 import com.blog.DTO.RegistrationForm;
 import com.blog.Service.UserService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -24,18 +27,18 @@ public class UserController {
 		return "index";
 	}
 	
-	@GetMapping("/login")
-	public String getLoginPage(Model model) {
+	@GetMapping("/signUp")
+	public String getSignUpPage(Model model) {
 		
 		model.addAttribute("regForm",new RegistrationForm());
 				
-		return "login";
+		return "registration";
 	}
 	
-	@PostMapping("/login")
-	public String login(@ModelAttribute("regForm") RegistrationForm regForm , Model model) {
+	@PostMapping("/signUp")
+	public String signUp(@ModelAttribute("regForm") RegistrationForm regForm , Model model) {
 		
-		Boolean status = service.login(regForm);
+		Boolean status = service.signUp(regForm);
 		if(status)
 		{
 			model.addAttribute("succMsg","You have Created Account Successfully");
@@ -43,9 +46,33 @@ public class UserController {
 		else
 		{
 			model.addAttribute("errMsg","Registration Failed email is already Registered");
-
 		}		
+		return "registration";
+	}
+	
+	@GetMapping("/login")
+	public String getLoginPage(Model model) 
+	{
+		model.addAttribute("loginForm", new LoginForm());
 		return "login";
+	}
+	
+	@PostMapping("/login")
+	public String login(@ModelAttribute("loginForm") LoginForm loginForm, Model model) 
+	{
+		String status = service.login(loginForm);
+		
+		if(status.equals("SUCCESS"))
+		{
+			model.addAttribute("succMsg","You have Loggedin Successfully");
+		}
+		else
+		{
+			model.addAttribute("errMsg",status);
+		}
+		
+		return "login";
+		
 	}
 	
 }
