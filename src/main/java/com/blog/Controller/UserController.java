@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
+import com.blog.DTO.ForgotPasswordForm;
 import com.blog.DTO.LoginForm;
 import com.blog.DTO.RegistrationForm;
 import com.blog.Service.UserService;
@@ -64,7 +64,8 @@ public class UserController {
 		
 		if(status.equals("SUCCESS"))
 		{
-			model.addAttribute("succMsg","You have Loggedin Successfully");
+			//model.addAttribute("succMsg","You have Loggedin Successfully");
+			return "redirect:/dashboard";
 		}
 		else
 		{
@@ -74,5 +75,32 @@ public class UserController {
 		return "login";
 		
 	}
+	
+	@GetMapping("/forgot")
+	public String getForgotPage(Model model) 
+	{
+		model.addAttribute("forgotForm", new ForgotPasswordForm());
+		return "forgotPassword";
+	}
+	
+	@PostMapping("/forgot")
+	public String forgotUser(@ModelAttribute("forgotForm") ForgotPasswordForm forgotForm,Model model) 
+	{
+		String status = service.updatePassword(forgotForm);
+		if(status.equals("SUCCESS"))
+		{
+			model.addAttribute("succMsg","New password created Successfully");
+			
+		}
+		else
+		{
+			model.addAttribute("errMsg",status);
+		}
+		
+		return "forgotPassword";
+	}
+	
+
+	
 	
 }

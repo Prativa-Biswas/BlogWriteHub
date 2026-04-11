@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>BlogHub</title>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body style="background-color: #eee;">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Blog Written Hub</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+       <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Post</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/addpost">New Post</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/comments">Comments</a>
+        </li>     
+      </ul>
+
+        <a  href="/logout" class="btn btn-danger" type="submit">Logout</a>
+
+    </div>
+  </div>
+</nav>
+
+<section class="h-100 gradient-form" >
+  
+<div class="container mt-5 col-md-5">
+     
+      <h1>Create New Post</h1>
+	  <div class="border  border-primary rounded border-3 p-3 bg-primary-subtle " >
+		 <div class="row justify-content-center ">
+						<form  class="needs-validation" >
+						  
+						  <!-- <div th:if="${succMsg}" class ="alert alert-success">
+						  <span th:text="${succMsg}"> </span>
+						  </div>
+						  
+						  <div th:if="${errMsg}" class ="alert alert-danger">
+						  <span th:text="${errMsg}"> </span>
+						  </div>						
+						   -->
+						  <!-- title -->
+						  <div class="mb-3">
+							  <label for="titleId" class="form-label">Title</label>						  
+							  <input type="text" class="form-control" id="titleId"   
+							    aria-describedby="emailHelp"> 
+							  							 
+						 </div>
+													  
+						  <!-- Short Description -->
+						  <div class="mb-3">
+							    <label for="descId" class="form-label">Short Description</label>
+							    <input type="password" class="form-control" id="descId" >								
+						  </div>
+						  
+						  <!-- Content -->
+						  <div class="mb-3">
+							    <label for="contentId" class="form-label">Content</label>
+							    <input type="password" class="form-control" id="contentId" >								
+						  </div>
+						  
+						  <!-- button -->
+						  <div class="d-flex align-items-center justify-content-center pb-2">
+						  			  <button type="submit" class="btn btn-primary">Create</button>	
+						  			  					    
+						  </div>
+						  
+						</form>
+		  </div>
+	  </div>	   
+				   
+</div>				
+
+
+</section>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
