@@ -9,10 +9,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.Data;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Table(name="USER_TB")
 public class User {
 	
 	@Id
@@ -23,6 +27,6 @@ public class User {
 	private String email;
 	private String password;
 
-	@OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL)
 	private List<Blog> blogList;
 }

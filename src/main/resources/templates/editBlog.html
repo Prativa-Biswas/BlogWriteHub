@@ -40,7 +40,7 @@
 	   <h3 style="text-align:center">Create New Post</h3>
 		 <div class="row justify-content-center ">
 						
-						<form th:action="@{/addpost}" th:object="${addPostForm}" method="post" class="needs-validation" novalidate>
+						<form th:action="@{/editBlog}" th:object="${editForm}" method="post" class="needs-validation" novalidate>
 						  
 						  <div th:if="${succMsg}" class ="alert alert-success">
 						  <span th:text="${succMsg}"> </span>
@@ -49,6 +49,10 @@
 						  <div th:if="${errMsg}" class ="alert alert-danger">
 						  <span th:text="${errMsg}"> </span>
 						  </div>						
+						  
+						  <span> 			
+						  		  <input type="hidden" class="form-control" id="bloId" th:field="*{blogId}" /> 
+						  </span>
 						  
 						  <!-- title -->
 						  <div class="mb-2">
@@ -84,7 +88,7 @@
 						  
 						  <!-- button -->
 						  <div class="d-flex align-items-center justify-content-center pb-2">
-						  			  <button type="submit" class="btn btn-primary">Create</button>	
+						  			  <button type="submit" class="btn btn-primary">Update</button>	
 						  			  					    
 						  </div>
 						  

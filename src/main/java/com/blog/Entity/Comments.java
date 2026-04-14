@@ -1,12 +1,9 @@
 package com.blog.Entity;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +12,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,30 +19,24 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "BLOG_TB")
-public class Blog {
-
+@Table(name = "COMMENTS_TB")
+public class Comments {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer blogId;
-	private String blogTitle;
-	private String shortDescription;
+	private Integer commentId; 
+	
+	private String name;
+	private String email;
 	
 	@Lob
-	private String blogContent;
+	private String commentContent;
 	
 	@CreationTimestamp
 	@Column(updatable = false)
-	private LocalDate creationDate;
-	
-	@UpdateTimestamp
-	private LocalDate updationDate;
+	private LocalDate createdOn;
 	
 	@ManyToOne
-	@JoinColumn(name = "userId")
-	private User user;
-	
-	@OneToMany(mappedBy = "blog",cascade = CascadeType.REMOVE)
-	private List<Comments> comments;
-	
+	@JoinColumn(name = "blogId")
+	private Blog blog;
 }

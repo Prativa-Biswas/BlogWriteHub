@@ -11,8 +11,6 @@ import com.blog.DTO.ForgotPasswordForm;
 import com.blog.DTO.LoginForm;
 import com.blog.DTO.RegistrationForm;
 import com.blog.Service.UserService;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 
 @Controller
