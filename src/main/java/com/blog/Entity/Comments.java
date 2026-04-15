@@ -4,8 +4,10 @@ import java.time.LocalDate;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,6 +32,7 @@ public class Comments {
 	private String email;
 	
 	@Lob
+	@Basic(fetch = FetchType.EAGER)
 	private String commentContent;
 	
 	@CreationTimestamp

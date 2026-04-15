@@ -19,12 +19,6 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
-	@GetMapping("/")
-	public String getIndexPage() {
-		
-		return "index";
-	}
-	
 	@GetMapping("/signUp")
 	public String getSignUpPage(Model model) {
 		
@@ -70,9 +64,9 @@ public class UserController {
 			model.addAttribute("errMsg",status);
 		}
 		
-		return "login";
-		
+		return "login";	
 	}
+	
 	
 	@GetMapping("/forgot")
 	public String getForgotPage(Model model) 
@@ -96,9 +90,5 @@ public class UserController {
 		}
 		
 		return "forgotPassword";
-	}
-	
-
-	
-	
+	}	
 }

@@ -33,14 +33,14 @@
 
 <div class="container mt-3">
 
-	<div class="card mb-3"  style="width: 55rem;" th:each="response: ${responseForm}">
+	<div class="card mb-3"  style="width: 55rem;" th:object="${responseBody}">
 	       <div class="card-header">
-		    <h3><a th:href="@{/readBlog(blogId=${response.blogId})}"><span th:text="${response.title}"></span></a></h3>
-		    <h5 class="card-title"><span th:text="${response.creationDate}"></span></h5>
+		    <h3><span th:text="*{title}"></span></h3>
+		    <h5 ><span th:text="*{shortDesc}"></span></h5>
 		    
 		  </div>
 		  <div class="card-body">
-		    <p class="card-text"><span th:text="${response.shortDesc}"></span>...<a th:href="@{/readBlog(blogId=${response.blogId})}" >Read More</a></p>
+		    <span th:utext="*{content}"></span>
 		    
 		  </div>
 	  </div>

@@ -2,12 +2,15 @@ package com.blog.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.blog.DTO.BlogPostForm;
+import com.blog.DTO.BlogResponse;
+import com.blog.DTO.IndexResponseDTO;
 import com.blog.Entity.Blog;
 import com.blog.Entity.User;
 import com.blog.Repository.BlogRepository;
@@ -123,6 +126,40 @@ public class BlogServiceImpl implements BlogService {
 		blogRepo.save( blog);
 		
 		return "SUCCESS";
+	}
+
+	@Override
+	public List<IndexResponseDTO> getAllBolgs() {
+			
+		//FETCH ALL BLOG
+		List<Blog> list = blogRepo.findAll();
+		
+		//CREATED RESPONSE OBJECT 
+		List<IndexResponseDTO > reponseList= list.stream().map(blog->
+		{
+			IndexResponseDTO res= new IndexResponseDTO();
+			res.setTitle(blog.getBlogTitle());
+			res.setCreationDate(blog.getCreationDate());
+			res.setShortDesc(blog.getShortDescription());
+			res.setBlogId(blog.getBlogId());
+			return res;
+		}).collect(Collectors.toList());
+			
+		
+		return reponseList;
+	}
+
+	@Override
+	public BlogResponse getBlogById(Integer Id) {
+
+		Optional<Blog> optionalBlog = blogRepo.findById(Id);
+		if(optionalBlog.isEmpty()) {return null;}
+		BlogResponse res= new BlogResponse();
+		Blog blog = optionalBlog.get();
+		res.setTitle(blog.getBlogTitle());
+		res.setShortDesc(blog.getShortDescription());
+		res.setContent(blog.getBlogContent());
+		return res;
 	}
 
 	
