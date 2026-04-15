@@ -1,7 +1,8 @@
 package com.blog.Service;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
+import java.util.Optional;import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,10 @@ import com.blog.DTO.CommentForm;
 import com.blog.DTO.CommentsResponse;
 import com.blog.Entity.Blog;
 import com.blog.Entity.Comments;
+import com.blog.Entity.User;
 import com.blog.Repository.BlogRepository;
 import com.blog.Repository.CommentRepository;
+import com.blog.Repository.UserRepository;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -22,6 +25,9 @@ public class CommentServiceImpl implements CommentService {
 	
 	@Autowired
 	private CommentRepository commentRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 	
 	@Override
 	public String addComment(CommentForm form) {
@@ -65,6 +71,27 @@ public class CommentServiceImpl implements CommentService {
 				
 		
 		return list;
+	}
+
+	@Override
+	public List<Comments> getAllCommnetsByUser(Integer userId) {
+		
+		//CHECK USER AVAILABILITY
+              Optional<User> byId = userRepo.findById(userId);
+              if (byId.isEmpty()) {               
+                  return Collections.emptyList();
+              } 
+              
+              List<Comments> commentList = commentRepo.findAllCommentsByUser(userId);
+		
+		
+		return commentList;
+	}
+
+	@Override
+	public void deleteComment(Integer id) {
+
+		commentRepo.deleteById(id);
 	}
 
 	

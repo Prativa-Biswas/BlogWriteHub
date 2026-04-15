@@ -32,7 +32,7 @@ public class BlogController {
 		
 		session.invalidate();
 		
-		return "index";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/dashboard")

@@ -49,26 +49,15 @@
 				    </tr>
 				  </thead>
 				  <tbody class=" table-group-divider">
-				    <tr>
-				      <th scope="row">1</th>
-				      <td>Mark</td>
-				      <td>Otto</td>
-				      <td>@mdo</td>
-				      <td></td>
-				    </tr>
-				    <tr>
-				      <th scope="row">2</th>
-				      <td>Jacob</td>
-				      <td>Thornton</td>
-				      <td>@fat</td>
-				       <td></td>
-				    </tr>
-				    <tr>
-				      <th scope="row">3</th>
-				      <td>John</td>
-				      <td>Doe</td>
-				      <td>@social</td>
-				       <td></td>
+				    <tr th:each ="comment: ${commentsList}">
+				      <th th:text="${commentStat.index+1}">1</th>
+				      <td th:text="${comment.email}"></td>
+				      <td th:text="${comment.commentContent}"></td>
+				      <td th:text="${comment.createdOn}"></td>
+				      <td>
+				      <a th:href="@{/delete(commentId=${comment.commentId})}" class="btn btn-danger p-1">Delete</a>			           
+				      </td>
+				      
 				    </tr>
 				  </tbody>
 				</table>
