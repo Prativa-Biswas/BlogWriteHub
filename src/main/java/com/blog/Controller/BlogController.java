@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.blog.DTO.BlogPostForm;
-import com.blog.DTO.BlogResponse;
 import com.blog.Entity.Blog;
 import com.blog.Service.BlogService;
 
@@ -103,17 +102,7 @@ public class BlogController {
 	
 	    return "editBlog";
 	};
- 
-	@GetMapping("/readBlog")
-	public String getBlog(@RequestParam("blogId") Integer blogId ,Model model) {
-		
-		BlogResponse responseBody = service.getBlogById(blogId);
-		System.out.println("CONTENT DB: " + responseBody.getContent());
-
-		model.addAttribute("responseBody",responseBody);
-		
-		return "viewBlog";
-	}
+	
 }
   
 
