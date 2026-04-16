@@ -103,6 +103,17 @@ public class BlogController {
 	    return "editBlog";
 	};
 	
+	
+	@GetMapping("/searchBlogByUser")
+	public String findUserFinteredBlog(@RequestParam("keyword") String Keyword, Model model) {
+
+      Integer userId = (Integer) session.getAttribute("userId");
+      List<Blog> blogs = service.getUserFilteredBlogs(Keyword, userId);
+	 model.addAttribute("listOfBlogs",blogs);
+	
+	    return "userFilteredBlogs";
+	};
+	
 }
   
 

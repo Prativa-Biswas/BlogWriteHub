@@ -4,6 +4,26 @@
 <meta charset="UTF-8">
 <title>BlogHub</title>
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
+<script >
+  $(document).ready(function(){
+	  $("#searchBox").on("keyup", function(){
+		  let key = $(this).val();
+		  $.ajax({
+			  type:"GET",
+			  url:"searchBlogByUser",
+			  data:{ keyword:key },
+			  success : function(result){
+                    $("#unfilteredDiv").hide();
+                    $("#filterDiv").html(result);
+      			  }			  
+		  });		  
+	  });	  
+  });
+
+</script>
+
 
 </head>
 <body style="background-color: #eee;">
@@ -26,6 +46,18 @@
         </li>     
       </ul>
 
+		<div class="d-flex flex-grow-1 justify-content-end me-5">
+		    
+		    <div class="input-group input-group-sm w-100" style="max-width: 350px;">
+		        <input type="search" class="form-control" placeholder="Search Blog" id="searchBox">
+		
+		        <span class="input-group-text">
+		            <i class="bi bi-search"></i>
+		        </span>
+		    </div>
+
+</div>
+
         <a  href="/logout" class="btn btn-danger" type="submit">Logout</a>
 
     </div>
@@ -35,7 +67,12 @@
 <section class="h-100 gradient-form" >
   
 <div class="container mt-5 ">
-      <div class="table-responsive">
+
+		<div id="filterDiv">
+		
+		</div>
+
+      <div class="table-responsive" id="unfilteredDiv">
       <h1>List Of Blogs</h1>
 				    <table class="table table-hover ">
 				  <thead class="table-dark">

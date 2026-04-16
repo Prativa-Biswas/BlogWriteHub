@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>BlogHub</title>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+
+    <div class="table-responsive">
+       <h1>List Of Blogs</h1>
+				    <table class="table table-hover ">
+				  <thead class="table-dark">
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Post Title</th>
+				      <th scope="col">Post Short Decsription </th>
+				      <th scope="col">Post Created On</th>
+				      <th scope="col">Action</th>
+				      
+				    </tr>
+				  </thead>
+				  <tbody class=" table-group-divider">
+				    <tr th:each="blog: ${listOfBlogs }">
+				      <th th:text="${blogStat.index+1}">1</th>
+				      <td th:text="${blog.blogTitle}"></td>
+				      <td th:text="${blog.shortDescription}"></td>
+				      <td th:text="${blog.creationDate}"></td>
+				      
+				      <td > <a th:href="@{/editBlog(blogId=${blog.blogId})}">Edit</a> 
+				      
+				      <form th:action="@{/deleteBlog}" method="post">
+				        <input type="hidden" id="blogId" name="blogId"  th:value="${blog.blogId}" style="display:inline;"/>
+				        <button type="submit" class="btn btn-danger btn-sm"
+        					onclick="return confirm('Are you sure to delete?')">
+						    Delete
+						</button>			        
+				      </form>			      
+				      </td>
+				    </tr>				    
+				  </tbody>
+				</table>
+	 </div>				
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

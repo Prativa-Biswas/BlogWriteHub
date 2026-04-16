@@ -183,5 +183,14 @@ public class BlogServiceImpl implements BlogService {
 		return collect;
 	}
 
+	@Override
+	public List<Blog> getUserFilteredBlogs(String keyword,Integer userId) {
+
+		List<Blog> filteredBlogs = blogRepo.findFilteredBlogs(keyword);
+		List<Blog> userBlogList = filteredBlogs.stream().filter(blog->blog.getUser().getUserId().equals(userId)).collect(Collectors.toList());
+		
+		return userBlogList;
+	}
+
 	
 }

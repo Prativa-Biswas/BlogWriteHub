@@ -20,4 +20,7 @@ public interface BlogService {
 	
 	public BlogResponse getBlogById(Integer Id);
 	public  List<IndexResponseDTO> findFilteredBlogs(String keyword);
+	
+	public List<Blog> getUserFilteredBlogs(String keyword,Integer userId);
+
 }
