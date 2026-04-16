@@ -24,6 +24,14 @@ public class IndexController {
 	@Autowired
 	private CommentService commentService;
 	
+	/**
+	 * Handles the request to load the home page (index page).
+	 * Retrieves all blogs from the service layer and adds them to the model
+	 * with the attribute name "responseForm" for display in the view.
+	 *
+	 * @param model the Model object used to pass data to the view
+	 * @return the name of the index view page
+	 */
 	@GetMapping("/")
 	public String getIndexPage(Model model) {
 		
@@ -33,6 +41,15 @@ public class IndexController {
 		return "index";
 	}
 	
+	/**
+	 * Handles request to display a single blog post along with its comments.
+	 * Fetches blog details by blogId, retrieves all comments for the blog,
+	 * and prepares a comment form for adding new comments.
+	 *
+	 * @param blogId the ID of the blog to be displayed
+	 * @param model the Model object used to pass data to the view
+	 * @return the view name "viewBlog" to render blog details page
+	 */
 	@GetMapping("/readBlog")
 	public String getBlog(@RequestParam("blogId") Integer blogId ,Model model) {
 		
@@ -52,6 +69,15 @@ public class IndexController {
 		return "viewBlog";
 	}
 
+	/**
+	 * Handles AJAX request for searching blogs based on a keyword.
+	 * Retrieves filtered blog list matching the keyword from the service layer
+	 * and returns a Thymeleaf fragment for dynamic page update.
+	 *
+	 * @param keyword the search keyword entered by the user
+	 * @param model the Model object used to pass filtered blog data to the view
+	 * @return the Thymeleaf fragment "filteredIndex :: blogList" containing filtered results
+	 */
 	@GetMapping("/searchBlog")
     public String searchBlog(
     		@RequestParam("keyword") String keyword ,Model model) {
