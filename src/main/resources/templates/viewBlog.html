@@ -18,7 +18,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">All Post</a>
+          <a class="nav-link active" aria-current="page" href="/">All Post</a>
         </li>    
       </ul>
          <a class="btn btn-primary px-2 mx-2 "  href="/signUp">Register</a>     
@@ -36,7 +36,6 @@
 	<div class="card mb-3"  style="width: 55rem;" th:object="${responseBody}">
 	       <div class="card-header">
 		    <h3><span th:text="*{title}"></span></h3>
-		    <h5 ><span th:text="*{shortDesc}"></span></h5>
 		    
 		  </div>
 		  <div class="card-body">

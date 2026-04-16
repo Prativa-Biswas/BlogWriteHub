@@ -52,4 +52,15 @@ public class IndexController {
 		return "viewBlog";
 	}
 
+	@GetMapping("/searchBlog")
+    public String searchBlog(
+    		@RequestParam("keyword") String keyword ,Model model) {
+	    
+		List<IndexResponseDTO> filteredBlogs = service.findFilteredBlogs(keyword);
+		model.addAttribute("responseForm",filteredBlogs);
+		
+		return "filteredIndex :: blogList";
+	}
+	
+	
 }

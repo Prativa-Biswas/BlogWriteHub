@@ -19,4 +19,5 @@ public interface BlogService {
 	public String updateBlog(Integer userid,BlogPostForm form);
 	
 	public BlogResponse getBlogById(Integer Id);
+	public  List<IndexResponseDTO> findFilteredBlogs(String keyword);
 }

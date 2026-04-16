@@ -1,5 +1,6 @@
 package com.blog.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -160,6 +161,26 @@ public class BlogServiceImpl implements BlogService {
 		res.setShortDesc(blog.getShortDescription());
 		res.setContent(blog.getBlogContent());
 		return res;
+	}
+
+	@Override
+	public List<IndexResponseDTO> findFilteredBlogs(String keyword) {
+
+		List<Blog> list = blogRepo.findFilteredBlogs(keyword);		
+		List<IndexResponseDTO> collect = list.stream().map(blog->{
+			
+			IndexResponseDTO res = new IndexResponseDTO();
+			res.setBlogId(blog.getBlogId());
+			res.setShortDesc(blog.getShortDescription());
+			res.setTitle(blog.getBlogTitle());
+			res.setCreationDate(blog.getCreationDate());
+			
+			return res;
+		}).collect(Collectors.toList());
+		
+		
+		
+		return collect;
 	}
 
 	
