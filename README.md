@@ -1,8 +1,8 @@
 # 📝 BlogWriteHub
 
-A full-stack web application where users can create accounts, write blogs, search content, and interact through comments. The application includes advanced features like AJAX-based search, session management, and email notifications.
+A  web application where users can create accounts, write blogs, search content, and interact through comments. The application includes advanced features like AJAX-based search, session management, and email notifications.
 
----
+
 
 ## 🚀 Features
 
@@ -17,16 +17,14 @@ A full-stack web application where users can create accounts, write blogs, searc
 - View all blogs
 - Add new blog (separate page)
 - View all comments
-
 - Rich Text Editor for writing blogs
 
 ### AJAX-based Search (jQuery)
 - Keyword-based blog search
 - User-specific blog filtering
-
 - Dynamic UI using Thymeleaf templates
 
----
+
 
 ## 🛠️ Tech Stack
 
@@ -36,7 +34,7 @@ A full-stack web application where users can create accounts, write blogs, searc
 - **ORM:** Spring Data JPA
 - **Other:** JavaMail API (for email functionality)
 
----
+
 
 ## 📂 Project Structure
 
@@ -49,7 +47,7 @@ View Layer – Thymeleaf templates
 Utils Package – Handles reusable functionalities like email sending  
 ```
 
----
+
 
 ## ⚙️ Setup Instructions
 
@@ -59,7 +57,7 @@ Utils Package – Handles reusable functionalities like email sending
 4. Run the Spring Boot application
 5. Open: http://localhost:8080
 
----
+
 
 ## 📌 Key Highlights
 
@@ -69,15 +67,14 @@ Utils Package – Handles reusable functionalities like email sending
 - Ensured data integrity using cascade delete
 - Built modular architecture using MVC pattern
 
----
+
 
 ## 📌 Future Enhancements
 
 - Like & share functionality
 - Pagination and sorting
-- Role-based access (Admin/User)
 
----
+
 
 ## 🙋‍♀️ Author
 
